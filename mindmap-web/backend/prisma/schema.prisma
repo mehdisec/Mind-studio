@@ -1,0 +1,100 @@
+// Prisma Schema for MindMap Studio
+// Works with SQLite (default for instant setup) and PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // Change to "postgresql" when connecting to a production PostgreSQL database
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  avatarUrl    String?  @default("/default-avatar.png")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  pages Page[]
+  nodes Node[]
+  edges Edge[]
+
+  @@map("users")
+}
+
+model Page {
+  id        String   @id @default(uuid())
+  userId    String
+  title       String   @default("Page 1")
+  theme       String   @default("cyberpunk") // 'cyberpunk' | 'cosmic' | 'matrix' | 'solar'
+  pageMode    String   @default("mindmap") // 'mindmap' | 'diagram'
+  diagramType String   @default("milestone-plane") // 'milestone-plane' | 'corporate-org' | 'pastel-mindmap' | 'flowchart-sketch' | 'mindmap-sketch'
+  diagramData String?  @default("") // Stored JSON string containing { nodes, edges, templateId, theme, title }
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nodes Node[]
+  edges Edge[]
+
+  @@index([userId])
+  @@map("pages")
+}
+
+model Node {
+  id             String   @id @default(uuid())
+  userId         String
+  pageId         String?
+  title          String
+  importance     Int      @default(5) // 1 to 10
+  note           String   @default("") // Markdown note body
+  posX           Float    @default(0.0)
+  posY           Float    @default(0.0)
+  tags           String   @default("[]") // Stored as JSON string or comma-separated list
+  nodeType       String   @default("text") // 'text' or 'image'
+  imageUrl       String   @default("") // Image URL or Base64 data
+  imageSize      String   @default("small") // 'small', 'medium', 'large'
+  highlighted    Boolean  @default(false)
+  highlightColor String   @default("gold") // 'gold', 'red', 'green'
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  page Page? @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  outgoingEdges Edge[] @relation("SourceEdges")
+  incomingEdges Edge[] @relation("TargetEdges")
+
+  @@index([userId])
+  @@index([pageId])
+  @@index([userId, pageId])
+  @@map("nodes")
+}
+
+model Edge {
+  id           String   @id @default(uuid())
+  userId       String
+  pageId       String?
+  sourceNodeId String
+  targetNodeId String
+  label        String?
+  weight       Float    @default(1.0)
+  createdAt    DateTime @default(now())
+
+  user       User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  page       Page? @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  sourceNode Node  @relation("SourceEdges", fields: [sourceNodeId], references: [id], onDelete: Cascade)
+  targetNode Node  @relation("TargetEdges", fields: [targetNodeId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceNodeId, targetNodeId])
+  @@index([userId])
+  @@index([pageId])
+  @@index([userId, pageId])
+  @@map("edges")
+}
+

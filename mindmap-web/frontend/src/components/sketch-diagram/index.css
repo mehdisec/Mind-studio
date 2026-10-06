@@ -1,0 +1,397 @@
+@import '@xyflow/react/dist/style.css';
+
+:root {
+  --font-sketch: 'Shantell Sans', 'Patrick Hand', 'Vazirmatn', cursive, sans-serif;
+  --font-heading: 'Fredoka', 'Shantell Sans', 'Vazirmatn', cursive, sans-serif;
+  --font-body: 'Patrick Hand', 'Caveat', 'Vazirmatn', cursive, sans-serif;
+  
+  /* Color Palette matching the reference image */
+  --bg-parchment: #FBFBF6;
+  --bg-parchment-pattern: #F5F4EC;
+  --color-olive-dark: #4A6B3A;
+  --color-olive-med: #5D8049;
+  --color-olive-light: #7E9F68;
+  --color-olive-bg: #EDF3E8;
+  --color-ink-black: #1A1A1A;
+  --color-ink-charcoal: #2E2E2E;
+  --color-paper-white: #FFFFFF;
+  --color-accent-amber: #D9822B;
+  --color-accent-terracotta: #C94A29;
+  
+  --shadow-sketch: 3px 3px 0px rgba(26, 26, 26, 0.9);
+  --shadow-sketch-sm: 2px 2px 0px rgba(26, 26, 26, 0.8);
+  --shadow-sketch-lg: 5px 5px 0px rgba(26, 26, 26, 0.85);
+  --shadow-sketch-green: 3px 3px 0px #4A6B3A;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--font-sketch);
+  background-color: var(--bg-parchment);
+  color: var(--color-ink-black);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mindmap-app-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-parchment);
+}
+
+/* Texture overlay for paper sketchbook feel (Dots) */
+.sketchbook-canvas-bg {
+  background-color: var(--bg-parchment) !important;
+  background-image: 
+    radial-gradient(#dedbd0 0.85px, transparent 0.85px),
+    radial-gradient(#dedbd0 0.85px, var(--bg-parchment) 0.85px);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+/* Texture overlay for Flowchart Graph Paper Grid */
+.sketchbook-grid-bg {
+  background-color: #FAF9F5 !important;
+  background-image: 
+    linear-gradient(to right, rgba(180, 180, 175, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180, 180, 175, 0.28) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+/* Crisp Clean Infographic Background */
+.sketchbook-clean-bg {
+  background-color: #FFFFFF !important;
+  background-image: 
+    radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+/* Soft Warm Cream Background for Pastel Mind Map */
+.sketchbook-pastel-bg {
+  background-color: #FFFDF8 !important;
+  background-image: 
+    radial-gradient(#e8e3d8 0.85px, transparent 0.85px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+/* Vibrant Sunshine Yellow Background for Milestone Roadmap */
+.sketchbook-yellow-bg {
+  background-color: #FDCA2F !important;
+  background-image: 
+    radial-gradient(#f3bc1c 1.8px, transparent 1.8px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+}
+
+/* Main Studio Dark Mode Background (Black_1.jpg) */
+.sketchbook-dark-studio-bg {
+  background-color: #0B0F19 !important;
+  background-image: url('/Backgrounds/Black_1.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Main Studio Light Mode Background (white_2.png) */
+.sketchbook-light-studio-bg {
+  background-color: #F8FAFD !important;
+  background-image: url('/Backgrounds/white_2.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Dark Slate Studio Mode */
+.sketchbook-dark-bg {
+  background-color: #18181B !important;
+  background-image: 
+    radial-gradient(#27272A 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+.paper-plane-hover:hover {
+  transform: scale(1.1) rotate(-3deg) !important;
+}
+
+.template-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.85) !important;
+}
+
+/* React Flow Canvas Overrides */
+.react-flow {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-flow__pane {
+  cursor: grab;
+}
+.react-flow__pane:active {
+  cursor: grabbing;
+}
+
+/* Connection handles: Gray, subtle offset, hidden by default, no shadow/jumping */
+.react-flow__handle {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  background: #9CA3AF !important;
+  border: 1.5px solid #2B2B2B !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.15s ease, background 0.15s ease !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* Visible ONLY when mouse is over the node OR when node is selected */
+.react-flow__node:hover .react-flow__handle,
+.react-flow__node.selected .react-flow__handle,
+.react-flow__handle:hover {
+  opacity: 1 !important;
+  pointer-events: all !important;
+  background: #9CA3AF !important;
+  transform: none !important;
+}
+
+.react-flow__handle:hover {
+  background: #4B5563 !important;
+  border-color: #111827 !important;
+}
+
+/* Remove outer curved selection box on text & doodle stickers */
+.react-flow__node-text.selected,
+.react-flow__node-doodle.selected,
+.react-flow__node.text.selected,
+.react-flow__node.doodle.selected,
+.react-flow__node[data-node-type="text"].selected,
+.react-flow__node[data-node-type="doodle"].selected {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Selection and Controls */
+.react-flow__controls {
+  box-shadow: var(--shadow-sketch) !important;
+  border: 2px solid var(--color-ink-black) !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  overflow: hidden;
+  margin: 16px !important;
+}
+
+.react-flow__controls-button {
+  border-bottom: 1.5px solid var(--color-ink-black) !important;
+  background: #ffffff !important;
+  color: var(--color-ink-black) !important;
+  transition: background 0.2s;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--color-olive-bg) !important;
+}
+
+.react-flow__minimap {
+  box-shadow: var(--shadow-sketch) !important;
+  border: 2.5px solid var(--color-ink-black) !important;
+  border-radius: 14px !important;
+  background: var(--bg-parchment) !important;
+  overflow: hidden;
+  margin: 16px !important;
+}
+
+/* Top Toolbar Layout */
+.sketch-header {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  gap: 12px;
+}
+
+.sketch-toolbar-box {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--color-ink-black);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sketch);
+  padding: 6px 12px;
+}
+
+.sketch-title-input {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--color-ink-black);
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed #999;
+  outline: none;
+  padding: 2px 6px;
+  min-width: 200px;
+}
+.sketch-title-input:focus {
+  border-bottom-color: var(--color-olive-dark);
+}
+
+/* Hand-drawn Button Style */
+.sketch-btn {
+  font-family: var(--font-sketch);
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #ffffff;
+  color: var(--color-ink-black);
+  border: 2px solid var(--color-ink-black);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow: var(--shadow-sketch-sm);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  outline: none;
+  white-space: nowrap;
+}
+
+.sketch-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sketch);
+  background: #fafaf7;
+}
+
+.sketch-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.sketch-btn-primary {
+  background: var(--color-olive-dark);
+  color: #ffffff;
+}
+.sketch-btn-primary:hover {
+  background: var(--color-olive-med);
+}
+
+.sketch-btn-olive {
+  background: var(--color-olive-bg);
+  color: var(--color-olive-dark);
+  border-color: var(--color-olive-dark);
+}
+
+.sketch-btn-sm {
+  padding: 5px 12px;
+  font-size: 13px;
+  border-width: 1.8px;
+}
+
+.sketch-btn-icon {
+  padding: 6px;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-ink-black);
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: var(--shadow-sketch-sm);
+  transition: all 0.15s;
+}
+.sketch-btn-icon:hover {
+  background: #f0f0eb;
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-sketch);
+}
+
+.sketch-divider {
+  width: 1.5px;
+  height: 24px;
+  background: #ddd;
+  margin: 0 4px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 26, 26, 0.4);
+  backdrop-filter: blur(4px);
+  padding: 16px;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #FAF9F2;
+  border: 3px solid var(--color-ink-black);
+  border-radius: 24px;
+  box-shadow: 6px 6px 0px rgba(26, 26, 26, 0.95);
+  padding: 24px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-parchment);
+}
+::-webkit-scrollbar-thumb {
+  background: #a9a89d;
+  border-radius: 6px;
+  border: 1px solid var(--color-ink-black);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-olive-dark);
+}
+
+@keyframes sketchPop {
+  0% { transform: scale(0.85); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop {
+  animation: sketchPop 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}

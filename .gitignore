@@ -1,0 +1,51 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# Node.js & Web Bundles
+node_modules/
+dist/
+build/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.turbo
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Databases
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+prisma/dev.db
+prisma/*.db
+
+# IDE & OS Artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.log
+*.mov
+*.mp4
+
+# AI Agent Scratch / Cache
+.agents/

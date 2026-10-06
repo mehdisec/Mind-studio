@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "vault_path": "C:\\Users\\Admin\\AppData\\Local\\Temp\\tmpfg4amr3_",
+  "last_saved": "2026-09-15T13:32:04.835445",
+  "nodes": {
+    "n2": {
+      "id": "n2",
+      "title": "Thought Beta",
+      "content": "Notes for Beta",
+      "importance": 5,
+      "x": 0.0,
+      "y": 0.0,
+      "vx": 0.0,
+      "vy": 0.0,
+      "tags": [],
+      "links": [],
+      "node_type": "text",
+      "image_path": "",
+      "image_size": "small",
+      "created_at": "2026-09-15T13:32:04.824458",
+      "updated_at": "2026-09-15T13:32:04.824458",
+      "metadata": {},
+      "fixed": false,
+      "highlighted": false,
+      "highlight_color": "gold"
+    }
+  },
+  "edges": []
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "doodle_arrow_3d_up_right",
+    "name": "3D Isometric Arrow (Up-Right)",
+    "nameFa": "فلش سه‌بعدی رو به بالا و راست",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_3d_up_right.png"
+  },
+  {
+    "id": "doodle_arrow_target_pin",
+    "name": "Target Pin Up Arrow",
+    "nameFa": "فلش سنجاقی نقطه‌ای رو به بالا",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_target_pin.png"
+  },
+  {
+    "id": "doodle_arrow_diagonal_sharp",
+    "name": "Sharp Diagonal Arrow",
+    "nameFa": "فلش تیز قطری رو به بالا",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_diagonal_sharp.png"
+  },
+  {
+    "id": "doodle_arrow_smooth_arc",
+    "name": "Smooth Sweeping Arc Arrow",
+    "nameFa": "فلش قوسی نرم به سمت راست",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_smooth_arc.png"
+  },
+  {
+    "id": "doodle_arrow_circle_loop",
+    "name": "Circular Return Loop Arrow",
+    "nameFa": "فلش دایره‌ای دوربرگردان",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_circle_loop.png"
+  },
+  {
+    "id": "doodle_arrow_elbow_right",
+    "name": "90° Corner Elbow Arrow",
+    "nameFa": "فلش گوشه‌دار ۹۰ درجه به راست",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_elbow_right.png"
+  },
+  {
+    "id": "doodle_arrow_ribbon_right",
+    "name": "Ribbon Banner Arrow",
+    "nameFa": "فلش روبانی به سمت راست",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_ribbon_right.png"
+  },
+  {
+    "id": "doodle_arrow_spiral_curve",
+    "name": "Spiral Hook Curve Arrow",
+    "nameFa": "فلش قلاب مارپیچ",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_spiral_curve.png"
+  },
+  {
+    "id": "doodle_arrow_zigzag_growth",
+    "name": "Zigzag Growth Trend Arrow",
+    "nameFa": "فلش زیگزاگ رشد صعودی",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_zigzag_growth.png"
+  },
+  {
+    "id": "doodle_arrow_wide_down",
+    "name": "Wide Flare Down Arrow",
+    "nameFa": "فلش پهن رو به پایین",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_wide_down.png"
+  },
+  {
+    "id": "doodle_arrow_3d_arc_up",
+    "name": "3D Arc Curve Arrow",
+    "nameFa": "فلش کمانی سه‌بعدی صعودی",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_3d_arc_up.png"
+  },
+  {
+    "id": "doodle_arrow_loop_swirl",
+    "name": "Loop Swirl Ribbon Arrow",
+    "nameFa": "فلش حلقه‌ای مارپیچی",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_loop_swirl.png"
+  },
+  {
+    "id": "doodle_arrow_u_turn_left",
+    "name": "U-Turn Return Arrow",
+    "nameFa": "فلش دوربرگردان U شکل به چپ",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_u_turn_left.png"
+  },
+  {
+    "id": "doodle_arrow_straight_up",
+    "name": "Straight Vertical Up Arrow",
+    "nameFa": "فلش مستقیم عمودی رو به بالا",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_straight_up.png"
+  },
+  {
+    "id": "doodle_arrow_sharp_down_right",
+    "name": "Sharp Slanted Arrow (Down-Right)",
+    "nameFa": "فلش زاویه‌دار رو به پایین و راست",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_sharp_down_right.png"
+  },
+  {
+    "id": "doodle_arrow_arc_pin_point",
+    "name": "Pin Dot Arc Arrow",
+    "nameFa": "فلش قوسی با نقطه اتصال",
+    "category": "Doodles",
+    "width": 80,
+    "height": 80,
+    "imgUrl": "/stickers/doodles/doodle_arrow_arc_pin_point.png"
+  }
+]
