@@ -203,6 +203,18 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({
     }
   };
 
+  const isSafeImageUrl = (src: string): boolean => {
+    if (!src || typeof src !== 'string') return false;
+    const trimmed = src.trim().toLowerCase();
+    return (
+      trimmed.startsWith('https://') ||
+      trimmed.startsWith('http://') ||
+      trimmed.startsWith('data:image/') ||
+      trimmed.startsWith('/') ||
+      trimmed.startsWith('./')
+    );
+  };
+
   // Helper to render basic markdown with images in preview mode
   const renderMarkdownPreview = (text: string) => {
     if (!text || typeof text !== 'string' || !text.trim()) {
@@ -221,11 +233,19 @@ export const NoteEditorModal: React.FC<NoteEditorModalProps> = ({
           content: text.slice(lastIndex, match.index),
         });
       }
-      parts.push({
-        type: 'image',
-        alt: match[1] || (isFa ? 'تصویر' : 'Image'),
-        src: match[2],
-      });
+      const rawSrc = match[2]?.trim() || '';
+      if (isSafeImageUrl(rawSrc)) {
+        parts.push({
+          type: 'image',
+          alt: match[1] || (isFa ? 'تصویر' : 'Image'),
+          src: rawSrc,
+        });
+      } else {
+        parts.push({
+          type: 'text',
+          content: match[0],
+        });
+      }
       lastIndex = match.index + match[0].length;
     }
 

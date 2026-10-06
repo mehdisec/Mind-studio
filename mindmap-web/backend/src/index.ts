@@ -7,13 +7,18 @@ import { initDatabaseAndSeed } from './db';
 const app = express();
 
 // Middlewares
+const allowedOrigins = config.corsOrigin === '*' 
+  ? '*' 
+  : config.corsOrigin.split(',').map(o => o.trim());
+
 app.use(cors({
-  origin: '*',
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-gemini-api-key', 'x-gemini-model'],
+  credentials: true
 }));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 import path from 'path';
 

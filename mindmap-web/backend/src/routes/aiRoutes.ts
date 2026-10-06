@@ -7,10 +7,12 @@ import {
   testAIConnection,
 } from '../controllers/aiController';
 import { authenticateToken } from '../middleware/auth';
+import { aiLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
 router.use(authenticateToken as any);
+router.use(aiLimiter);
 
 router.post('/test-connection', testAIConnection as any);
 router.post('/sub-topics', generateSubTopics as any);

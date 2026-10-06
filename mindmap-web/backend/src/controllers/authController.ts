@@ -112,38 +112,32 @@ export async function login(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    // Verify Captcha to protect against brute-force attacks
-    if (captchaId) {
-      const isCaptchaValid = verifyCaptcha(captchaId, captchaAnswer || '');
-      if (!isCaptchaValid) {
-        res.status(400).json({ error: 'کد امنیتی کپچا اشتباه است یا منقضی شده است. لطفاً مجدداً امتحان کنید.' });
-        return;
-      }
+    // Strictly enforce Captcha verification to protect against automated brute-force attacks
+    if (!captchaId || typeof captchaAnswer !== 'string' || !captchaAnswer.trim()) {
+      res.status(400).json({ error: 'کد امنیتی کپچا الزامی است. لطفاً کد نمایش داده شده را وارد کنید.' });
+      return;
+    }
+
+    const isCaptchaValid = verifyCaptcha(captchaId, captchaAnswer.trim());
+    if (!isCaptchaValid) {
+      res.status(400).json({ error: 'کد امنیتی کپچا اشتباه است یا منقضی شده است. لطفاً مجدداً امتحان کنید.' });
+      return;
     }
 
     const cleanInput = email.trim().toLowerCase();
-    
-    // Check if input is an alias for the primary admin account
-    const isAdminAlias = [
-      'mehdisec',
-      'mehdi',
-      'admin',
-      'admin@mindmap.local',
-      'mehdisec@gmail.com'
-    ].includes(cleanInput);
 
+    // Query user by unique email or username
     const user = await prisma.user.findFirst({
       where: {
         OR: [
           { email: cleanInput },
-          ...(isAdminAlias ? [{ email: 'mehdisec@gmail.com' }] : []),
           { name: cleanInput }
         ]
       }
     });
 
     if (!user) {
-      res.status(401).json({ error: 'ایمیل یا رمز عبور اشتباه است' });
+      res.status(401).json({ error: 'ایمیل/نام کاربری یا رمز عبور اشتباه است' });
       return;
     }
 

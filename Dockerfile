@@ -31,11 +31,17 @@ ENV PORT=5000
 RUN apk add --no-cache openssl bash curl
 
 # Copy build artifacts and production modules
-COPY --from=builder /app/mindmap-web/backend/package*.json ./
-COPY --from=builder /app/mindmap-web/backend/prisma ./prisma
-COPY --from=builder /app/mindmap-web/backend/dist ./dist
-COPY --from=builder /app/mindmap-web/backend/node_modules ./node_modules
-COPY --from=builder /app/mindmap-web/frontend/dist ../frontend/dist
+COPY --from=builder --chown=node:node /app/mindmap-web/backend/package*.json ./
+COPY --from=builder --chown=node:node /app/mindmap-web/backend/prisma ./prisma
+COPY --from=builder --chown=node:node /app/mindmap-web/backend/dist ./dist
+COPY --from=builder --chown=node:node /app/mindmap-web/backend/node_modules ./node_modules
+COPY --from=builder --chown=node:node /app/mindmap-web/frontend/dist ../frontend/dist
+
+# Set permissions for node user
+RUN chown -R node:node /app
+
+# Switch to non-root user
+USER node
 
 # Expose backend / SPA combined port
 EXPOSE 5000

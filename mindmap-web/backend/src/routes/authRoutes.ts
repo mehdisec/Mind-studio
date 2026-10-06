@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { register, login, getProfile, updateProfile, changePassword, getStats, getCaptcha } from '../controllers/authController';
 import { authenticateToken } from '../middleware/auth';
+import { authLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
 router.get('/captcha', getCaptcha);
-router.post('/register', register);
-router.post('/login', login);
+router.post('/register', authLimiter, register);
+router.post('/login', authLimiter, login);
 router.get('/profile', authenticateToken as any, getProfile as any);
 router.put('/profile', authenticateToken as any, updateProfile as any);
 router.put('/password', authenticateToken as any, changePassword as any);

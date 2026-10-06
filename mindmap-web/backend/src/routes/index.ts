@@ -4,9 +4,11 @@ import pageRoutes from './pageRoutes';
 import nodeRoutes from './nodeRoutes';
 import edgeRoutes from './edgeRoutes';
 import aiRoutes from './aiRoutes';
+import { apiLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
+router.use(apiLimiter);
 router.use('/auth', authRoutes);
 router.use('/pages', pageRoutes);
 router.use('/nodes', nodeRoutes);
